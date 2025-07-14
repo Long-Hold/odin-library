@@ -25,6 +25,57 @@
                 - If read or not status
                  -->
     
-                 
+    <!-- Layout plan. -->
+
+    <header>
+        <h1>My Library</h1>
+        <p>Track your books</p>
+    </header>
+
+    <div class="add-book-container">
+        <!-- This button makes the form appear on the screen -->
+        <button class="display-form-btn" type="button">Add Book</button>
+        
+        <section>
+            <h2>Add New Book</h2>
+
+            <!-- The span elements will have a star added that isn't read by assistive technology -->
+            <form id="new-book-form">
+                <fieldset>
+                    <legend>Book Details</legend>
+                    <div>
+                        <label for="title">Title <span class="required-star"></span> 
+                            <input type="text" name="title" required></input>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="author">Author <span class="required-star"></span>
+                            <input type="text" name="author" required>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="page-num">Number of Pages <span class="required-star"></span>
+                            <input type="text" name="page-num" required>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="read-status-cntr">
+                    <label for="read-status">I have read this book <span class="required-star"></span>
+                        <input type="radio" name="read-status">
+                    </label>
+                </div>
+
+                <section class="form-control-btns">
+                    <button type="submit">Add Book</button>
+                    <button type="reset">Reset Form</button>
+                    <button type="button">Cancel</button>
+                </section>
+            </form>
+        </section>
+    </div>
+    
 </body>
 </html>
