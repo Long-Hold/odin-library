@@ -95,5 +95,24 @@ function displayNewBookCard(bookObject) {
     console.log(`Book Object: ${bookObject.bookID} succesfully added to Card`)
 }
 
+function captureBookCardEvents() {
+    const cardsContainer = document.querySelector('.cards-container');
+
+    cardsContainer.addEventListener('click', (event) => {
+        if (event.target.textContent === 'Delete Book') {
+            // Record the unique ID of the selected book card
+            deleteBookFromLibrary(event);
+        }
+    })
+}
+
+function deleteBookFromLibrary(bookEvent) {
+    const bookID = bookEvent.target.closest('.book-card').dataset.bookid;
+    const bookIndex = bookArray.findIndex(book => book.bookID === bookID);
+    console.log(bookIndex);
+}
+
 toggleFormModal();
 createNewBook();
+
+captureBookCardEvents();
