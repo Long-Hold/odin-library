@@ -4,6 +4,9 @@ const bookArray = [];
 // The Node card template to create new books with
 const bookCardNode = document.querySelector('.book-card-template');
 
+// Node for book cards
+const bookCardsContainer = document.querySelector('.cards-container');
+
 function Book(title, author, numOfPages, readStatus) {
     if (!new.target) {
         throw Error('Must use New when creating Book Object');
@@ -73,13 +76,11 @@ function addBookToLibrary(bookObject) {
     console.log(`Book Object: ${bookObject.bookID} added to bookArray Library`);
 }
 
-function displayNewBookCard(bookObject) {
+function updateCardDisplay(bookObject) {
     /**Uses a bookObject to create a new DOM element
      * Dom element template is a global variable, the data is modified
      * based on object attrributes
      */
-
-    const cardContainer = document.querySelector('.cards-container');
 
     // Perform deep copy of card (carries over children-structure)
     const newCard = bookCardNode.content.cloneNode(true).querySelector('.book-card');
@@ -90,7 +91,7 @@ function displayNewBookCard(bookObject) {
     newCard.querySelector('.page-num').textContent = `${bookObject.numOfPages} pages`;
     newCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
 
-    cardContainer.appendChild(newCard);
+    bookCardsContainer.appendChild(newCard);
 
     console.log(`Book Object: ${bookObject.bookID} succesfully added to Card`)
 }
@@ -108,21 +109,32 @@ function captureBookCardEvents() {
 
 // TODO:
 function deleteBookFromLibrary(bookEvent) {
+    /**Deletes a selected book from the array based on dataset.bookID.
+     * Calls displayAllBooks() function to redraw the UI after book has been
+     * removed from array
+     */
     const bookID = bookEvent.target.closest('.book-card').dataset.bookid;
     const bookIndex = bookArray.findIndex(book => book.bookID === bookID);
-    console.log(bookIndex);
+
+    bookArray.splice(bookIndex, 1);
+
+    displayAllBooks();
 }
 
 
 function displayAllBooks() {
-    bookArray.forEach(book => displayNewBookCard(book));
+    /**
+     * Clears the UI and then calls the UI update function for each element
+     * in array
+     */
+    bookCardsContainer.textContent = '';
+    bookArray.forEach(book => updateCardDisplay(book));
 }
 
 toggleFormModal();
 createNewBook();
 
 captureBookCardEvents();
-
 
 // Placeholder books for demonstration purposes
 const placeHolderBook = new Book('The Alchemist', 'Paulo Coelho', 205, true);
