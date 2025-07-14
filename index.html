@@ -41,7 +41,7 @@
 
             <dialog closedby="any">
                 <!-- The span elements will have a star added that isn't read by assistive technology -->
-                <form id="new-book-form">
+                <form id="new-book-form" method="post">
                     <fieldset class="book-details">
                         <legend>Book Details</legend>
                         <div>
@@ -74,7 +74,7 @@
                     <section class="form-control-btns">
                         <button type="submit" formmethod="dialog">Add Book</button>
                         <button type="reset">Reset Form</button>
-                        <button type="button" id="close-dialog">Cancel</button>
+                        <button type="button" class="close-dialog">Cancel</button>
                     </section>
                 </form>
             </dialog>

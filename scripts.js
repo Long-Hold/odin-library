@@ -1,3 +1,6 @@
+// Global variable that stores all book objects
+const bookArray = [];
+
 function Book(title, author, numOfPages, readStatus) {
     if (!new.target) {
         throw Error('Must use New when creating Book Object');
@@ -33,7 +36,31 @@ function toggleFormModal() {
 }
 
 function createNewBook() {
+    /** Catches the form locally
+     * Creates a new book object, adds to global book array
+     * Resets form, closes dialog
+     */
+    const newBookForm = document.getElementById('new-book-form');
+    const dialog = document.querySelector('dialog');
 
+    newBookForm.addEventListener('submit', (event) => {
+        // Stop default form submission to allow local handling
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        
+        const book = new Book(
+            formData.get('title'),
+            formData.get('author'),
+            parseInt(formData.get('page-num')),
+            formData.get('status') === 'read-true' ? true : false,
+        )
+
+        bookArray.push(book);
+        newBookForm.reset();
+        dialog.close();
+    })
 }
 
 toggleFormModal();
+createNewBook();
