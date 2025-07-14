@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
 
     <title>Library</title>
 </head>
@@ -39,47 +39,45 @@
         <section>
             <h2>Add New Book</h2>
 
-            <!-- The span elements will have a star added that isn't read by assistive technology -->
-            <form id="new-book-form">
-                <fieldset class="book-details">
-                    <legend>Book Details</legend>
-                    <div>
-                        <label for="title">Title <span class="required-star"></span> 
-                            <input type="text" name="title" maxlength="64" required></input>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="author">Author <span class="required-star"></span>
-                            <input type="text" name="author" maxlength="64" required>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label for="page-num">Number of Pages <span class="required-star"></span>
-                            <input type="number" name="page-num" min="1" required>
-                        </label>
-                    </div>
-                </fieldset>
-                <fieldset class="read-status">
-                    <legend>Have you read this book?</legend>
-                    <div>
-                        <input type="radio" name="status" id="read-true" value="read-true" required>
-                        <label for="read-true">I have read this book</label>
-                    </div>
-
-                    <div>
-                        <input type="radio" name="status" id="read-false" value="read-false" required>
-                        <label for="read-false">I have <strong>not</strong> read this book</label>
-                    </div>
-                </fieldset>
-
-                <section class="form-control-btns">
-                    <button type="submit">Add Book</button>
-                    <button type="reset">Reset Form</button>
-                    <button type="button">Cancel</button>
-                </section>
-            </form>
+            <dialog closedby="any">
+                <!-- The span elements will have a star added that isn't read by assistive technology -->
+                <form id="new-book-form">
+                    <fieldset class="book-details">
+                        <legend>Book Details</legend>
+                        <div>
+                            <label for="title">Title <span class="required-star"></span>
+                                <input type="text" name="title" maxlength="64" required></input>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="author">Author <span class="required-star"></span>
+                                <input type="text" name="author" maxlength="64" required>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="page-num">Number of Pages <span class="required-star"></span>
+                                <input type="number" name="page-num" min="1" required>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="read-status">
+                        <legend>Have you read this book?</legend>
+                        <div>
+                            <input type="radio" name="status" id="read-true" value="read-true" required>
+                            <label for="read-true">I have read this book</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="status" id="read-false" value="read-false" required>
+                            <label for="read-false">I have <strong>not</strong> read this book</label>
+                        </div>
+                    </fieldset>
+                    <section class="form-control-btns">
+                        <button type="submit" formmethod="dialog">Add Book</button>
+                        <button type="reset">Reset Form</button>
+                        <button type="button" id="close-dialog">Cancel</button>
+                    </section>
+                </form>
+            </dialog>
         </section>
     </div>
 
