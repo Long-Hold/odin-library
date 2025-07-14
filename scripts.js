@@ -1,6 +1,9 @@
 // Global variable that stores all book objects
 const bookArray = [];
 
+// The Node card template to create new books with
+const bookCardNode = document.querySelector('.book-card');
+
 function Book(title, author, numOfPages, readStatus) {
     if (!new.target) {
         throw Error('Must use New when creating Book Object');
@@ -56,10 +59,40 @@ function createNewBook() {
             formData.get('status') === 'read-true' ? true : false,
         )
 
-        bookArray.push(book);
+        // Add book to the global array, then update the UI with new bookCard
+        addBookToLibrary(book);
+        displayNewBookCard(book);
+
         newBookForm.reset();
         dialog.close();
     })
+}
+
+function addBookToLibrary(bookObject) {
+    bookArray.push(bookObject);
+    console.log(`Book Object: ${bookObject.bookID} added to bookArray Library`);
+}
+
+function displayNewBookCard(bookObject) {
+    /**Uses a bookObject to create a new DOM element
+     * Dom element template is a global variable, the data is modified
+     * based on object attrributes
+     */
+
+    const cardContainer = document.querySelector('.cards-container');
+
+    // Perform deep copy of card (carries over children-structure)
+    const newCard = bookCardNode.cloneNode(true);
+
+    newCard.dataset.bookid = bookObject.bookID;
+    newCard.querySelector('.title').textContent = bookObject.title;
+    newCard.querySelector('.author').textContent = bookObject.author;
+    newCard.querySelector('.page-num').textContent = bookObject.numOfPages;
+    newCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
+
+    cardContainer.appendChild(newCard);
+
+    console.log(`Book Object: ${bookObject.bookID} succesfully added to Card`)
 }
 
 toggleFormModal();
