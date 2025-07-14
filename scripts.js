@@ -21,6 +21,11 @@ function Book(title, author, numOfPages, readStatus) {
     this.readStatus = readStatus;
 }
 
+Book.prototype.changeReadStatus = function() {
+    this.readStatus = !this.readStatus;
+    console.log(`Book Object: ${this.bookID} status changed to ${this.readStatus}`);
+}
+
 function toggleFormModal() {
     /** Attaches an event listener to the parent container of the modal and form.
      * If the 'add book' button is clicked, the modal is revealed.
@@ -112,7 +117,7 @@ function captureBookCardEvents() {
         }
 
         if (event.target.textContent === 'Change Status') {
-
+            toggleReadStatus(bookCard);
         }
     })
 }
@@ -128,6 +133,11 @@ function deleteBookCardNode(bookCard) {
     /**Removes the node from the UI */
     bookCard.remove();
     console.log(`Book Node: ${bookCard.dataset.bookid} Removed`);
+}
+
+function toggleReadStatus(bookCard) {
+    const bookObject = bookArray.find(book => book.bookID === bookCard.dataset.bookid);
+    bookObject.changeReadStatus();
 }
 
 function getBookObjectIndex(datasetID) {
