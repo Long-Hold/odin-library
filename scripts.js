@@ -2,7 +2,7 @@
 const bookArray = [];
 
 // The Node card template to create new books with
-const bookCardNode = document.querySelector('.book-card');
+const bookCardNode = document.querySelector('.book-card-template');
 
 function Book(title, author, numOfPages, readStatus) {
     if (!new.target) {
@@ -82,7 +82,7 @@ function displayNewBookCard(bookObject) {
     const cardContainer = document.querySelector('.cards-container');
 
     // Perform deep copy of card (carries over children-structure)
-    const newCard = bookCardNode.cloneNode(true);
+    const newCard = bookCardNode.content.cloneNode(true).querySelector('.book-card');
 
     newCard.dataset.bookid = bookObject.bookID;
     newCard.querySelector('.title').textContent = bookObject.title;
