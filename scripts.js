@@ -64,7 +64,7 @@ function createNewBook() {
 
         // Add book to the global array, then update the UI with new bookCard
         addBookToLibrary(book);
-        displayNewBookCard(book);
+        updateCardDisplay(book);
 
         newBookForm.reset();
         dialog.close();
@@ -120,9 +120,7 @@ function captureBookCardEvents() {
 function deleteBookFromLibrary(bookID) {
     /**Deletes a selected book from the array based on dataset.bookID.
      */
-    const bookIndex = bookArray.findIndex(book => book.bookID === bookID);
-
-    bookArray.splice(bookIndex, 1);
+    bookArray.splice(getBookObjectIndex(bookID), 1);
     console.log(`Book ID: ${bookID} deleted from bookArray`);
 }
 
@@ -138,7 +136,7 @@ function getBookObjectIndex(datasetID) {
      * Returns: Int: Index of the book object
      */
 
-    return bookArray.findIndex(book => book.bookID == datasetID);
+    return bookArray.findIndex(book => book.bookID === datasetID);
 }
 
 
