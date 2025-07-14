@@ -110,6 +110,10 @@ function captureBookCardEvents() {
             deleteBookFromLibrary(bookCard.dataset.bookid);
             deleteBookCardNode(bookCard);
         }
+
+        if (event.target.textContent === 'Change Status') {
+
+        }
     })
 }
 
@@ -126,6 +130,15 @@ function deleteBookCardNode(bookCard) {
     /**Removes the node from the UI */
     bookCard.remove();
     console.log(`Book Node: ${bookCard.dataset.bookid} Removed`);
+}
+
+function getBookObjectIndex(datasetID) {
+    /**Parses the global object array matching object ID with node dataset.bookID
+     * 
+     * Returns: Int: Index of the book object
+     */
+
+    return bookArray.findIndex(book => book.bookID == datasetID);
 }
 
 
