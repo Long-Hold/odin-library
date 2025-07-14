@@ -100,25 +100,25 @@ function captureBookCardEvents() {
     const cardsContainer = document.querySelector('.cards-container');
 
     cardsContainer.addEventListener('click', (event) => {
+        const bookCard = event.target.closest('.book-card');
+
         if (event.target.textContent === 'Delete Book') {
             // Record the unique ID of the selected book card
-            deleteBookFromLibrary(event);
+            deleteBookFromLibrary(bookCard.dataset.bookid);
         }
     })
 }
 
 // TODO:
-function deleteBookFromLibrary(bookEvent) {
+function deleteBookFromLibrary(bookID) {
     /**Deletes a selected book from the array based on dataset.bookID.
      * Calls displayAllBooks() function to redraw the UI after book has been
      * removed from array
      */
-    const bookID = bookEvent.target.closest('.book-card').dataset.bookid;
     const bookIndex = bookArray.findIndex(book => book.bookID === bookID);
 
     bookArray.splice(bookIndex, 1);
-
-    displayAllBooks();
+    console.log(`Book ID: ${bookID} deleted from bookArray`);
 }
 
 
