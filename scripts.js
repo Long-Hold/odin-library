@@ -86,8 +86,8 @@ function displayNewBookCard(bookObject) {
 
     newCard.dataset.bookid = bookObject.bookID;
     newCard.querySelector('.title').textContent = bookObject.title;
-    newCard.querySelector('.author').textContent = bookObject.author;
-    newCard.querySelector('.page-num').textContent = bookObject.numOfPages;
+    newCard.querySelector('.author em').textContent = bookObject.author;
+    newCard.querySelector('.page-num').textContent = `${bookObject.numOfPages} pages`;
     newCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
 
     cardContainer.appendChild(newCard);
