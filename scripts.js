@@ -117,7 +117,10 @@ function captureBookCardEvents() {
         }
 
         if (event.target.textContent === 'Change Status') {
-            toggleReadStatus(bookCard);
+            const bookObject = getBookObject(bookCard.dataset.bookid);
+
+            bookObject.changeReadStatus();
+            changeCardNodeStatus(bookCard, bookObject);
         }
     })
 }
@@ -135,9 +138,9 @@ function deleteBookCardNode(bookCard) {
     console.log(`Book Node: ${bookCard.dataset.bookid} Removed`);
 }
 
-function toggleReadStatus(bookCard) {
-    const bookObject = bookArray.find(book => book.bookID === bookCard.dataset.bookid);
-    bookObject.changeReadStatus();
+function changeCardNodeStatus(bookCard, bookObject) {
+    bookCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
+    console.log(`Book Node: ${bookCard.dataset.bookid} status changed to ${bookCard.querySelector('.status').textContent}`)
 }
 
 function getBookObjectIndex(datasetID) {
@@ -147,6 +150,10 @@ function getBookObjectIndex(datasetID) {
      */
 
     return bookArray.findIndex(book => book.bookID === datasetID);
+}
+
+function getBookObject(datasetID) {
+    return bookArray.find(book => book.bookID === datasetID);
 }
 
 
