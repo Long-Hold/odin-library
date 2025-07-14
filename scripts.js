@@ -106,13 +106,26 @@ function captureBookCardEvents() {
     })
 }
 
+// TODO:
 function deleteBookFromLibrary(bookEvent) {
     const bookID = bookEvent.target.closest('.book-card').dataset.bookid;
     const bookIndex = bookArray.findIndex(book => book.bookID === bookID);
     console.log(bookIndex);
 }
 
+
+function displayAllBooks() {
+    bookArray.forEach(book => displayNewBookCard(book));
+}
+
 toggleFormModal();
 createNewBook();
 
 captureBookCardEvents();
+
+
+// Placeholder books for demonstration purposes
+const placeHolderBook = new Book('The Alchemist', 'Paulo Coelho', 205, true);
+bookArray.push(placeHolderBook);
+
+displayAllBooks();
