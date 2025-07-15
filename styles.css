@@ -51,6 +51,11 @@ body {
   "cards";
 }
 
+header,
+.add-book-container {
+  text-align: center;
+}
+
 .cards-container {
   width: 100vw;
   display: grid;
@@ -61,9 +66,3 @@ body {
 
   gap: 1rem;
 }
-
-header,
-.add-book-container {
-  text-align: center;
-}
-
