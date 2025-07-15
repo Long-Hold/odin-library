@@ -171,8 +171,42 @@ createNewBook();
 
 captureBookCardEvents();
 
-// Placeholder books for demonstration purposes
-const placeHolderBook = new Book('The Alchemist', 'Paulo Coelho', 205, true);
-bookArray.push(placeHolderBook);
+// Create 12 distinct book objects and add them to the array
+
+const book1 = new Book('The Alchemist', 'Paulo Coelho', 205, true);
+bookArray.push(book1);
+
+const book2 = new Book('To Kill a Mockingbird', 'Harper Lee', 376, true);
+bookArray.push(book2);
+
+const book3 = new Book('1984', 'George Orwell', 328, false);
+bookArray.push(book3);
+
+const book4 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 180, true);
+bookArray.push(book4);
+
+const book5 = new Book('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', 309, true);
+bookArray.push(book5);
+
+const book6 = new Book('The Catcher in the Rye', 'J.D. Salinger', 277, false);
+bookArray.push(book6);
+
+const book7 = new Book('Pride and Prejudice', 'Jane Austen', 432, true);
+bookArray.push(book7);
+
+const book8 = new Book('The Lord of the Rings', 'J.R.R. Tolkien', 1216, false);
+bookArray.push(book8);
+
+const book9 = new Book('The Hitchhiker\'s Guide to the Galaxy', 'Douglas Adams', 224, true);
+bookArray.push(book9);
+
+const book10 = new Book('Brave New World', 'Aldous Huxley', 268, false);
+bookArray.push(book10);
+
+const book11 = new Book('The Hobbit', 'J.R.R. Tolkien', 310, true);
+bookArray.push(book11);
+
+const book12 = new Book('Fahrenheit 451', 'Ray Bradbury', 194, false);
+bookArray.push(book12);
 
 displayAllBooks();
