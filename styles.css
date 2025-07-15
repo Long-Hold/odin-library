@@ -9,7 +9,8 @@
 }
 
 :root {
-  --container-background-clr: rgb(70, 160, 70);
+  --container-background-clr: rgb(38, 38, 38);
+  --yellow-border-clr: rgb(230, 189, 9);
 }
 
 html {
@@ -100,4 +101,5 @@ body {
 dialog {
   background-color: var(--container-background-clr);
   color: white;
+  border: 1px solid var(--yellow-border-clr);
 }
