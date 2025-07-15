@@ -75,6 +75,8 @@ header,
 }
 
 /* Visual styling */
+
+/* ---- Body styling (Background) ---- */
 body::before {
     content: '';
     position: fixed;
@@ -97,7 +99,9 @@ body {
     min-height: 100vh;
     position: relative;
 }
+/* ---- End of body styling ---- */
 
+/* ---- Dialog + Form styling ---- */
 dialog {
   padding: 1rem;
   background-color: var(--container-background-clr);
@@ -110,3 +114,5 @@ dialog {
   justify-self: center;
   margin-top: 1rem;
 }
+
+/* ---- End of Dialog + Form styling ---- */
