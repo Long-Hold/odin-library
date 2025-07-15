@@ -1,3 +1,5 @@
+/* Reset / Normalizing CSS */
+
 *,
 *::before,
 *::after {
@@ -30,9 +32,5 @@ button {
 }
 
 input {
-    appearance: none;
-}
-
-input[type="radio"] {
     appearance: none;
 }
