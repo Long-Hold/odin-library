@@ -54,6 +54,7 @@ body {
 header,
 .add-book-container {
   text-align: center;
+  padding: 1rem;
 }
 
 .cards-container {
