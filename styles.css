@@ -138,6 +138,15 @@ form {
 
     border-bottom: 2px solid black;
   }
+
+  & label:has(input) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & label {
+    margin: 0.5rem;
+  }
 }
 
 /* ---- End of Dialog + Form styling ---- */
