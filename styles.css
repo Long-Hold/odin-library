@@ -41,8 +41,8 @@ input {
 body {
   height: 100vh;
   display: grid;
-  justify-content: center;
-  justify-items: center;
+  
+  align-items: center;
   grid-template-rows: 0.5fr 0.5fr 4fr;
 
   grid-template-areas: 
@@ -59,7 +59,7 @@ header,
 .cards-container {
   width: 100vw;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   
   grid-auto-rows: minmax(25vh, auto);
   align-items: last baseline;
