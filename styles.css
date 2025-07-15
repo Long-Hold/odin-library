@@ -11,6 +11,8 @@
 html {
     font-size: 16px;
     line-height: 1.6;
+    color: white;
+    background-color: rgb(32, 31, 31);
 }
 
 button,
@@ -33,4 +35,17 @@ button {
 
 input {
     appearance: none;
+}
+
+/* Layout styling */
+body {
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 0.5fr 0.5fr 4fr;
+
+  grid-template-areas: 
+  "header"
+  "submit"
+  "cards";
 }
