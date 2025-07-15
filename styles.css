@@ -51,14 +51,20 @@ body {
   "cards";
 }
 
-section.cards-container {
+.cards-container {
   width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(100vw / 4), 1fr));
+  justify-items: center;
 }
 
 .book-card, .book-card > section:has(button){
   display: flex;
   flex-flow: column nowrap;
   gap: 10px;
+  border: 1px solid red;
+  width: fit-content;
+  height: fit-content;
 }
 
 header,
