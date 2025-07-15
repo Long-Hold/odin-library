@@ -55,9 +55,10 @@ section.cards-container {
   width: 100vw;
 }
 
-.book-card {
-  display: grid;
-  gap: 20px;
+.book-card, .book-card > section:has(button){
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
 }
 
 header,
