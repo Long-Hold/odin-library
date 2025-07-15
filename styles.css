@@ -42,6 +42,7 @@ body {
   height: 100vh;
   display: grid;
   justify-content: center;
+  justify-items: center;
   grid-template-rows: 0.5fr 0.5fr 4fr;
 
   grid-template-areas: 
@@ -49,3 +50,18 @@ body {
   "submit"
   "cards";
 }
+
+section.cards-container {
+  width: 100vw;
+}
+
+.book-card {
+  display: grid;
+  gap: 20px;
+}
+
+header,
+.add-book-container {
+  text-align: center;
+}
+
