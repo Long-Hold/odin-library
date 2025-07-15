@@ -116,6 +116,7 @@ dialog {
   margin-top: 1rem;
 }
 
+/* Form + nested elements styling */
 form {
   color: black;
 
@@ -129,6 +130,11 @@ form {
   font-size: 1.2rem;
 
   background-color: var(--custom-yellow);
+
+  & fieldset {
+    border: none;
+    padding: 0.5rem;
+  }
 }
 
 /* ---- End of Dialog + Form styling ---- */
