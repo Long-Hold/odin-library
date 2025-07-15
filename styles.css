@@ -52,13 +52,13 @@ body {
 }
 
 .cards-container {
-  
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   
   grid-auto-rows: minmax(25vh, auto);
   align-items: last baseline;
+
   gap: 1rem;
 }
 
