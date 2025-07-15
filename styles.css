@@ -8,11 +8,15 @@
     box-sizing: border-box;
 }
 
+:root {
+  --container-background-clr: rgb(70, 160, 70);
+}
+
 html {
     font-size: 16px;
     line-height: 1.6;
     color: white;
-    background-color: rgb(32, 31, 31);
+    background-color: rgb(0, 0, 0);
 }
 
 button,
@@ -67,4 +71,10 @@ header,
 
   gap: 1rem;
   padding: 1rem;
+}
+
+/* Visual styling */
+dialog {
+  background-color: var(--container-background-clr);
+  color: white;
 }
