@@ -74,6 +74,29 @@ header,
 }
 
 /* Visual styling */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* Fallback for newer browsers */
+    background-image: url('./svgs/backgrounds/spring-curves-bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+/* Ensure body can grow with content */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+}
+
 dialog {
   background-color: var(--container-background-clr);
   color: white;
