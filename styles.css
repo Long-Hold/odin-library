@@ -134,6 +134,7 @@ form {
   & fieldset {
     border: none;
     padding: 0.5rem;
+    margin-bottom: 10px;
   }
 }
 
