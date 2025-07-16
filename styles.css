@@ -45,6 +45,12 @@ input {
     appearance: none;
 }
 
+button {
+  border-radius: 10px;
+  border: none;
+  padding: 0.4em 0.2em;
+}
+
 /* Universal radio button styling */
 input[type='checkbox'] {
   position: relative;
