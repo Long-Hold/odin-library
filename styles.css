@@ -44,6 +44,30 @@ input {
     appearance: none;
 }
 
+/* Universal radio button styling */
+input[type='checkbox'] {
+  position: relative;
+  
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--yellow-border-clr);
+
+  background-color: var(--container-background-clr);
+  color: rgb(11, 220, 11);
+
+  &::before {
+    content: '✔';
+    position: absolute;
+    font-size: 1.2em;
+    visibility: hidden;
+    top: -0.4em;
+  }
+
+  &:checked::before {
+    visibility: visible;
+  }
+}
+
 /* Layout styling */
 body {
   height: 100vh;
