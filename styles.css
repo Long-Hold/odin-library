@@ -166,16 +166,12 @@ form {
     width: 100%;
   }
 
-  .read-status label {
+  & .read-status label {
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
   }
 }
 
-/* debugging */
-input[type='radio'] {
-  border: 1px solid red;
-}
 
 /* ---- End of Dialog + Form styling ---- */
