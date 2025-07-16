@@ -171,6 +171,17 @@ form {
     justify-content: space-between;
     align-items: center;
   }
+
+  fieldset {
+    position: relative;
+
+    & legend .required-star {
+      position: absolute;
+      justify-self: center;
+      right: 0;
+
+    }
+  }
 }
 
 /* debugging */
