@@ -179,9 +179,22 @@ form {
     border-bottom: 2px solid black;
   }
 
-  & label:has(input) {
-    display: flex;
-    flex-flow: column nowrap;
+  & label:has(input[type='text'], input[type='number']) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+      'lable req-msg'
+      'input input';
+
+      > .required-star {
+        grid-area: req-msg;
+        justify-self: end;
+      }
+
+      > input {
+        grid-area: input;
+      }
   }
 
   & label {
