@@ -44,17 +44,17 @@
                     <fieldset class="book-details">
                         <legend><strong>Book Details</strong></legend>
                         <div>
-                            <label>Title <span class="required-star"></span>
+                            <label>Title <span class="required-star">required</span>
                                 <input type="text" name="title" maxlength="64" required></input>
                             </label>
                         </div>
                         <div>
-                            <label>Author <span class="required-star"></span>
+                            <label>Author <span class="required-star">required</span>
                                 <input type="text" name="author" maxlength="64" required>
                             </label>
                         </div>
                         <div>
-                            <label>Pages <span class="required-star"></span>
+                            <label>Pages <span class="required-star">required</span>
                                 <input type="number" name="page-num" min="1" required>
                             </label>
                         </div>
@@ -62,12 +62,16 @@
                     <fieldset class="read-status">
                         <legend><strong>Have you read this book?</strong></legend>
                         <div>
-                            <input type="radio" name="status" id="read-true" value="read-true" required>
-                            <label for="read-true">I have read this book</label>
+                            <!-- <input type="radio" name="status" id="read-true" value="read-true" required> -->
+                            <label for="read-true">I have read this book <span class="required-star">required</span>
+                                <input type="radio" name="status" id="read-true" value="read-true" required>
+                            </label>
                         </div>
                         <div>
-                            <input type="radio" name="status" id="read-false" value="read-false" required>
-                            <label for="read-false">I have <strong>not</strong> read this book</label>
+                            <!-- <input type="radio" name="status" id="read-false" value="read-false" required> -->
+                            <label for="read-false">I have <strong>not</strong> read this book <span class="required-star">required</span>
+                                <input type="radio" name="status" id="read-false" value="read-false" required>
+                            </label>
                         </div>
                     </fieldset>
                     <section class="form-control-btns">
