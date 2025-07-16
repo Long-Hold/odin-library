@@ -149,11 +149,39 @@ form {
     margin: 0.5rem;
   }
 
+  & .required-star {
+      width: fit-content;
+      font-size: 0.8rem;
+
+      background-color: red;
+      color: white;
+
+      padding: 0 0.2em;
+      align-self: flex-end;
+    }
+
   input[type='text'], input[type='number'] {
     font-size: 1rem;
     padding: 0.2rem 0.5rem;
     width: 100%;
   }
+
+  .read-status label {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    & .required-star {
+      align-self: flex-start;
+      justify-self: center;
+      order: 1;
+    }
+  }
+}
+
+/* debugging */
+input[type='radio'] {
+  border: 1px solid red;
 }
 
 /* ---- End of Dialog + Form styling ---- */
