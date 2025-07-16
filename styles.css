@@ -147,6 +147,12 @@ form {
   & label {
     margin: 0.5rem;
   }
+
+  input[type='text'], input[type='number'] {
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+    width: 75%;
+  }
 }
 
 /* ---- End of Dialog + Form styling ---- */
