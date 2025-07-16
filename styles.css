@@ -89,7 +89,7 @@ label:has(>input:required:valid) .required-star {
   visibility: hidden;
 }
 
-/* Layout styling */
+/* ---- Layout styling ---- */
 body {
   height: 100vh;
   display: grid;
@@ -120,6 +120,14 @@ header,
   gap: 1rem;
   padding: 1rem;
 }
+
+.book-card {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+}
+
+/* ---- End of layout Styling ---- */
 
 /* Visual styling */
 
