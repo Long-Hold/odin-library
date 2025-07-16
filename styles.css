@@ -170,12 +170,6 @@ form {
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-
-    & .required-star {
-      align-self: flex-start;
-      justify-self: center;
-      order: 1;
-    }
   }
 }
 
