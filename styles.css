@@ -199,7 +199,7 @@ form {
 
   & label:has(input[type='checkbox']) {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
 
     justify-content: space-between;
     align-items: center;
