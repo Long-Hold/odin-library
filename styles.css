@@ -232,7 +232,7 @@ form {
 
     justify-content: space-evenly;
     align-items: center;
-    gap: 0.2em;
+    gap: 0.5em;
 
     > button {
       flex: 1 0 auto;
