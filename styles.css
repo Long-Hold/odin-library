@@ -225,6 +225,15 @@ form {
     padding: 0.2rem 0.5rem;
     width: 100%;
   }
+
+  .form-control-btns {
+    display: flex;
+    flex-flow: row wrap;
+
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.2em;
+  }
 }
 
 
