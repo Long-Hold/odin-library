@@ -141,7 +141,6 @@ form {
 
   & label:has(input) {
     display: flex;
-    justify-content: space-between;
     flex-flow: column nowrap;
   }
 
@@ -152,6 +151,7 @@ form {
   input[type='text'], input[type='number'] {
     font-size: 1rem;
     padding: 0.2rem 0.5rem;
+    width: 100%;
   }
 }
 
