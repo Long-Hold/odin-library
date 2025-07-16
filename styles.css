@@ -12,6 +12,7 @@
   --container-background-clr: rgb(38, 38, 38);
   --yellow-border-clr: rgb(230, 189, 9);
   --custom-yellow: rgb(230, 189, 9);
+  --high-contrast-green: rgb(11, 220, 11);
 }
 
 html {
@@ -53,7 +54,7 @@ input[type='checkbox'] {
   border: 1px solid var(--yellow-border-clr);
 
   background-color: var(--container-background-clr);
-  color: rgb(11, 220, 11);
+  color: var(--high-contrast-green);
 
   &::before {
     content: '✔';
@@ -66,6 +67,20 @@ input[type='checkbox'] {
   &:checked::before {
     visibility: visible;
   }
+}
+
+/* Visual styling for required fields */
+input:required:invalid {
+  border-color: red;
+}
+
+input:required:valid {
+  border: 2px solid var(--high-contrast-green);
+}
+
+/* Hide required message when form is valid */
+label:has(>input:required:valid) .required-star {
+  visibility: hidden;
 }
 
 /* Layout styling */
