@@ -233,6 +233,12 @@ form {
     justify-content: space-evenly;
     align-items: center;
     gap: 0.2em;
+
+    > button {
+      flex: 1 0 auto;
+      background-color: var(--container-background-clr);
+      color: white;
+    }
   }
 }
 
