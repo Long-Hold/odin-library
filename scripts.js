@@ -122,6 +122,7 @@ function captureBookCardEvents() {
 
             bookObject.changeReadStatus();
             changeCardNodeStatus(bookCard, bookObject);
+            updateStatusColor(bookCard, bookObject);
         }
     })
 }
