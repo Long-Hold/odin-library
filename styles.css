@@ -91,11 +91,15 @@ label:has(>input:required:valid) .required-star {
 
 /* ---- Layout styling ---- */
 body {
-  height: 100vh;
-  display: grid;
+  height: 100%;
+  width: 100%;
   
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: repeat(2, 0.1fr) 4fr;
+
   align-items: center;
-  grid-template-rows: 0.5fr 0.5fr 4fr;
+  justify-content: center;
 
   grid-template-areas: 
   "header"
@@ -110,7 +114,9 @@ header,
 }
 
 .cards-container {
-  width: 100%;
+  width:100%;
+  grid-area: cards;
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   
