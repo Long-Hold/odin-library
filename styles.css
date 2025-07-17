@@ -113,6 +113,14 @@ header,
   padding: 1rem;
 }
 
+header {
+  grid-area: header;
+}
+
+.add-book-container {
+  grid-area: submit;
+}
+
 .cards-container {
   width:100%;
   grid-area: cards;
