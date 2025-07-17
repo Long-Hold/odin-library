@@ -255,6 +255,15 @@ form {
     }
   }
 }
-
-
 /* ---- End of Dialog + Form styling ---- */
+
+/* ---- Book container + Book Cards styling */
+.book-card {
+  border: 2px solid var(--yellow-border-clr);
+  border-radius: 10px;
+  box-shadow: 5px 5px black;
+
+  background-color: var(--container-background-clr);
+  padding: 0.5rem;
+}
+/* ---- End of book container + book card styling ---- */
