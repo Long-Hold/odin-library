@@ -265,5 +265,15 @@ form {
 
   background-color: var(--container-background-clr);
   padding: 0.5rem;
+
+  & section:has(button) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  & section > button {
+    width: 45%;
+  }
 }
 /* ---- End of book container + book card styling ---- */
