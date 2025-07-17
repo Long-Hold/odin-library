@@ -266,6 +266,8 @@ form {
   background-color: var(--container-background-clr);
   padding: 0.5rem;
 
+  height: 100%;
+
   & section:has(button) {
     display: flex;
     flex-flow: row wrap;
