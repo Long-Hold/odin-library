@@ -66,6 +66,11 @@ button:hover, button:focus-visible {
   transition: 0.2s;
 }
 
+button:active {
+  background-color: var(--container-background-clr);
+  filter:brightness(0.5);
+}
+
 /* Universal radio button styling */
 input[type='checkbox'] {
   position: relative;
