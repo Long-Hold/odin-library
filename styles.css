@@ -441,5 +441,10 @@ form {
       }
     }
   }
+
+  & .status {
+    padding: 0 0.5em;
+    border-radius: 10px;
+  }
 }
 /* ---- End of book container + book card styling ---- */
