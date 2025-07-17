@@ -26,6 +26,25 @@ Book.prototype.changeReadStatus = function() {
     console.log(`Book Object: ${this.bookID} status changed to ${this.readStatus}`);
 }
 
+function delegateAddBookEvents() {
+    const container = document.querySelector('.add-book-container');
+
+    container.addEventListener('click', (event) => {
+        if (event.target.classList.contains('display-form-btn')) {
+            toggleFormModal();
+        }
+
+        else if (event.target.classList.contains('delete-all')) {
+            deleteAllBookData();
+        }
+    })
+}
+
+function deleteAllBookData() {
+    bookArray.length = 0;
+    bookCardsContainer.innerHTML = '';
+}
+
 function toggleFormModal() {
     /** Attaches an event listener to the parent container of the modal and form.
      * If the 'add book' button is clicked, the modal is revealed.
@@ -219,3 +238,4 @@ const book12 = new Book('Fahrenheit 451', 'Ray Bradbury', 194, false);
 bookArray.push(book12);
 
 displayAllBooks();
+delegateAddBookEvents();
