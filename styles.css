@@ -115,7 +115,6 @@ header,
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   
   grid-auto-rows: minmax(25vh, auto);
-  align-items: last baseline;
 
   gap: 1rem;
   padding: 1rem;
