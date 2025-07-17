@@ -126,7 +126,7 @@ header,
 
   justify-content: space-between;
   align-items: stretch;
-  
+
   gap: 0.5rem;
 }
 
@@ -271,12 +271,13 @@ form {
 
   & section:has(button) {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+    flex-flow: column nowrap;
+    
+    gap: 0.6rem;
   }
 
   & section > button {
-    width: 45%;
+    width: 100%;
   }
 }
 /* ---- End of book container + book card styling ---- */
