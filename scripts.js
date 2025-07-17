@@ -148,7 +148,7 @@ function changeCardNodeStatus(bookCard, bookObject) {
 function updateStatusColor(bookCard, bookObject) {
     const statusContainer = bookCard.querySelector('.status');
 
-    statusContainer.style.backgroundColor = bookObject.readStatus ? 'green' : 'red';
+    statusContainer.style.backgroundColor = bookObject.readStatus ? 'green' : 'var(--warning-red)';
     console.log(`Book Card: ${bookCard.dataset.datasetID} status container set to ${statusContainer.style.backgroundColor}`);
 }
 
