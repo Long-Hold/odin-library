@@ -142,7 +142,8 @@ header {
 }
 
 .cards-container {
-  width:100%;
+  justify-self: center;
+  min-width:50%;
   grid-area: cards;
 
   display: grid;
