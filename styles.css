@@ -303,10 +303,11 @@ form {
     &:last-child {
       color: white;
       background-color: var(--container-background-clr);
-      border: 2px solid red;
+      border: 2px solid var(--warning-red);
+      transition: 0.2s;
 
-      &:hover {
-        background-color: rgb(215, 33, 33);
+      &:hover, &:focus {
+        background-color: var(--warning-red);
       }
     }
   }
