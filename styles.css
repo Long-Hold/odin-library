@@ -56,6 +56,14 @@ button {
 button {
   background-color: var(--custom-yellow);
   box-shadow: 5px 5px black;
+  filter:brightness(1);
+  transition: 0.2s;
+}
+
+/* Universal button animations */
+button:hover, button:focus-visible {
+  filter:brightness(1.15);
+  transition: 0.2s;
 }
 
 /* Universal radio button styling */
