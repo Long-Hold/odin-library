@@ -13,6 +13,7 @@
   --yellow-border-clr: rgb(230, 189, 9);
   --custom-yellow: rgb(230, 189, 9);
   --high-contrast-green: rgb(11, 220, 11);
+  --warning-red: rgb(215, 33, 33);
 }
 
 html {
