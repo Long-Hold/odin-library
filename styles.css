@@ -51,6 +51,12 @@ button {
   padding: 0.4em 0.2em;
 }
 
+/* Universal visual styling for buttons */
+button {
+  background-color: var(--custom-yellow);
+  box-shadow: 5px 5px black;
+}
+
 /* Universal radio button styling */
 input[type='checkbox'] {
   position: relative;
