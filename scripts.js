@@ -31,7 +31,7 @@ function delegateAddBookEvents() {
 
     container.addEventListener('click', (event) => {
         if (event.target.classList.contains('display-form-btn')) {
-            toggleFormModal();
+            toggleFormModal(event);
         }
 
         else if (event.target.classList.contains('delete-all')) {
@@ -45,23 +45,19 @@ function deleteAllBookData() {
     bookCardsContainer.innerHTML = '';
 }
 
-function toggleFormModal() {
-    /** Attaches an event listener to the parent container of the modal and form.
-     * If the 'add book' button is clicked, the modal is revealed.
-     * If the 'cancel' button is clicked, the modal is closed.
-     */
+function toggleFormModal(event) {
+    // Listens for events related to the dialog open and close functionality
 
-    const formContainer = document.querySelector('.add-book-container');
     const dialog = document.querySelector('dialog');
 
-    formContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('display-form-btn')) {
-            dialog.showModal();
-        }
+    if (event.target.classList.contains('display-form-btn')) {
+        dialog.showModal();
+    }
 
-        else if (event.target.classList.contains('close-dialog')) {
-            dialog.close();
-        }
+    dialog.addEventListener('click', (event) => {
+            if (event.target.classList.contains('close-dialog')) {
+        dialog.close();
+    }
     })
 }
 
@@ -194,9 +190,13 @@ function displayAllBooks() {
     bookArray.forEach(book => updateCardDisplay(book));
 }
 
-toggleFormModal();
+// Dialog toggle or delete all delegator
+delegateAddBookEvents();
+
+// Form submission events
 createNewBook();
 
+// Book card event delegation
 captureBookCardEvents();
 
 // Create 12 distinct book objects and add them to the array
@@ -238,4 +238,3 @@ const book12 = new Book('Fahrenheit 451', 'Ray Bradbury', 194, false);
 bookArray.push(book12);
 
 displayAllBooks();
-delegateAddBookEvents();
