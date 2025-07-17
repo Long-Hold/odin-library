@@ -95,6 +95,7 @@ function updateCardDisplay(bookObject) {
     newCard.querySelector('.author em').textContent = bookObject.author;
     newCard.querySelector('.page-num').textContent = `${bookObject.numOfPages} pages`;
     newCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
+    updateStatusColor(newCard, bookObject);
 
     bookCardsContainer.appendChild(newCard);
 
@@ -141,6 +142,13 @@ function deleteBookCardNode(bookCard) {
 function changeCardNodeStatus(bookCard, bookObject) {
     bookCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
     console.log(`Book Node: ${bookCard.dataset.bookid} status changed to ${bookCard.querySelector('.status').textContent}`)
+}
+
+function updateStatusColor(bookCard, bookObject) {
+    const statusContainer = bookCard.querySelector('.status');
+
+    statusContainer.style.backgroundColor = bookObject.readStatus ? 'green' : 'red';
+    console.log(`Book Card: ${bookCard.dataset.datasetID} status container set to ${statusContainer.style.backgroundColor}`);
 }
 
 function getBookObjectIndex(datasetID) {
