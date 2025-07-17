@@ -132,8 +132,6 @@
   --custom-yellow: rgb(230, 189, 9);
   --high-contrast-green: rgb(11, 220, 11);
   --warning-red: rgb(215, 33, 33);
-
-  -webkit-appearance: none;
 }
 
 html {
@@ -160,7 +158,6 @@ button {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  -webkit-appearance: none;
 }
 
 input {
@@ -168,6 +165,7 @@ input {
 }
 
 button {
+  color: black;
   border-radius: 10px;
   border: none;
   padding: 0.4em 0.2em;
