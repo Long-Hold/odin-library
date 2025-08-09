@@ -7,24 +7,23 @@ const bookCardNode = document.querySelector('.book-card-template');
 // Node for book cards
 const bookCardsContainer = document.querySelector('.cards-container');
 
-function Book(title, author, numOfPages, readStatus) {
-    if (!new.target) {
-        throw Error('Must use New when creating Book Object');
+class Book {
+    // Generate a secure and random ID
+
+    constructor(title, author, numOfPages, readStatus) {
+        this.bookID = self.crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.numOfPages = numOfPages;
+        this.readStatus = readStatus;
     }
 
-    // Generate a secure and random ID
-    this.bookID = self.crypto.randomUUID();
-
-    this.title = title;
-    this.author = author;
-    this.numOfPages = numOfPages;
-    this.readStatus = readStatus;
+    changeReadStatus() {
+        this.readStatus = !this.readStatus;
+    }
 }
 
-Book.prototype.changeReadStatus = function() {
-    this.readStatus = !this.readStatus;
-    console.log(`Book Object: ${this.bookID} status changed to ${this.readStatus}`);
-}
+
 
 function delegateAddBookEvents() {
     const container = document.querySelector('.add-book-container');
