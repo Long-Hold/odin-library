@@ -10,17 +10,31 @@ const bookCardsContainer = document.querySelector('.cards-container');
 class Book {
     // Generate a secure and random ID
 
+    #bookID;
+    #title;
+    #author;
+    #numOfPages;
+    #readStatus;
+
     constructor(title, author, numOfPages, readStatus) {
-        this.bookID = self.crypto.randomUUID();
-        this.title = title;
-        this.author = author;
-        this.numOfPages = numOfPages;
-        this.readStatus = readStatus;
+        this.#bookID = self.crypto.randomUUID();
+        this.#title = title;
+        this.#author = author;
+        this.#numOfPages = numOfPages;
+        this.#readStatus = readStatus;
     }
 
-    changeReadStatus() {
-        this.readStatus = !this.readStatus;
-    }
+    get bookID() { return this.#bookID; }
+
+    get title() { return this.#title; }
+
+    get author() { return this.#author; }
+
+    get numOfPages() { return this.#numOfPages; }
+
+    get readStatus() { return this.#readStatus; }
+
+    changeReadStatus() { this.#readStatus = !this.#readStatus; }
 }
 
 
