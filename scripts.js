@@ -45,20 +45,19 @@ class Book {
 }
 
 const library = (function() {
-    // Stores created Book objects
     const booksArray = [];
 
     const addBook = (book) => booksArray.append(book);
 
     const deleteAllBooks = () => bookArray.length = 0;
 
-    const deleteBook = () => {
-        /**Finds the book that is to be deleted via it's unique
-         * Book ID
-         */   
-    }
+    const deleteBook = (datasetID) => booksArray.splice(getBookObj(datasetID), 1); 
 
     const getBookObj = (datasetID) => booksArray.find(book => book.bookID === datasetID);
+
+    const getBookArray = () => structuredClone(booksArray);
+
+    return {addBook, deleteAllBooks, deleteBook, getBookObj, getBookArray};
 })();
 
 function delegateAddBookEvents() {
