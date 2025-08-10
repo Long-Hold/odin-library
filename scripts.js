@@ -38,6 +38,10 @@ class Book {
     static get bookArray() {
         return Book.#bookArray;
     }
+
+    static deleteBook(bookID) {
+        Book.#bookArray.splice(getBookObject(bookID), 1);
+    }
 }
 
 
@@ -159,7 +163,7 @@ function captureBookCardEvents() {
 function deleteBookFromLibrary(bookID) {
     /**Deletes a selected book from the array based on dataset.bookID.
      */
-    bookArray.splice(getBookObjectIndex(bookID), 1);
+    Book.deleteBook(bookID);
     console.log(`Book ID: ${bookID} deleted from bookArray`);
 }
 
@@ -187,11 +191,11 @@ function getBookObjectIndex(datasetID) {
      * Returns: Int: Index of the book object
      */
 
-    return bookArray.findIndex(book => book.bookID === datasetID);
+    return Book.bookArray.findIndex(book => book.bookID === datasetID);
 }
 
 function getBookObject(datasetID) {
-    return bookArray.find(book => book.bookID === datasetID);
+    return Book.bookArray.find(book => book.bookID === datasetID);
 }
 
 
