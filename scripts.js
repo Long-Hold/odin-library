@@ -44,7 +44,20 @@ class Book {
     }
 }
 
+const library = (function() {
+    // Stores created Book objects
+    const booksArray = [];
 
+    const addBook = (book) => booksArray.append(book);
+
+    const deleteAllBooks = () => bookArray.length = 0;
+
+    const deleteBook = () => {
+        /**Finds the book that is to be deleted via it's unique
+         * Book ID
+         */   
+    }
+})();
 
 function delegateAddBookEvents() {
     const container = document.querySelector('.add-book-container');
