@@ -48,6 +48,19 @@ const library = (function() {
     return {addBook, deleteAllBooks, deleteBook, getBookObj, getBookArray};
 })();
 
+const dialogManager = (function() {
+    const dialog = document.querySelector('dialog');
+
+    const showModal = () => dialog.showModal();
+
+    // Closes the dialog if the close button is selected
+    dialog.addEventListener('click', (event) => {
+        if (event.target.classList.contains('close-dialog')) { dialog.close(); }
+    });
+
+    return {showModal};
+})();
+
 function delegateAddBookEvents() {
     const container = document.querySelector('.add-book-container');
 
