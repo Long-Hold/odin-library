@@ -11,8 +11,6 @@ class Book {
     #numOfPages;
     #readStatus;
 
-    static #bookArray = [];
-
     constructor(title, author, numOfPages, readStatus) {
         this.#bookID = self.crypto.randomUUID();
         this.#title = title;
@@ -32,14 +30,6 @@ class Book {
     get readStatus() { return this.#readStatus; }
 
     changeReadStatus() { this.#readStatus = !this.#readStatus; }
-
-    static get bookArray() {
-        return Book.#bookArray;
-    }
-
-    static deleteBook(bookID) {
-        Book.#bookArray.splice(getBookObject(bookID), 1);
-    }
 }
 
 const library = (function() {
@@ -156,7 +146,7 @@ function captureBookCardEvents() {
         }
 
         if (event.target.textContent === 'Change Status') {
-            const bookObject = getBookObject(bookCard.dataset.bookid);
+            const bookObject = library.getBookObj(bookCard.dataset.bookid);
 
             bookObject.changeReadStatus();
             changeCardNodeStatus(bookCard, bookObject);
@@ -182,11 +172,6 @@ function updateStatusColor(bookCard, bookObject) {
     statusContainer.style.backgroundColor = bookObject.readStatus ? 'green' : 'var(--warning-red)';
     console.log(`Book Card: ${bookCard.dataset.datasetID} status container set to ${statusContainer.style.backgroundColor}`);
 }
-
-function getBookObject(datasetID) {
-    return Book.bookArray.find(book => book.bookID === datasetID);
-}
-
 
 function displayAllBooks() {
     /**
