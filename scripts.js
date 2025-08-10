@@ -53,7 +53,7 @@ const library = (function() {
 
     const getBookObj = (datasetID) => booksArray.find(book => book.bookID === datasetID);
 
-    const getBookArray = () => structuredClone(booksArray);
+    const getBookArray = () => [...booksArray];
 
     return {addBook, deleteAllBooks, deleteBook, getBookObj, getBookArray};
 })();
