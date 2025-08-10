@@ -67,14 +67,10 @@ function delegateAddBookEvents() {
         }
 
         else if (event.target.classList.contains('delete-all')) {
-            deleteAllBookData();
+            library.deleteAllBooks();
+            bookCardsContainer.innerHTML = '';
         }
     })
-}
-
-function deleteAllBookData() {
-    bookArray.length = 0;
-    bookCardsContainer.innerHTML = '';
 }
 
 function toggleFormModal(event) {
