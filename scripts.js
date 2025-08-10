@@ -66,7 +66,7 @@ function delegateAddBookEvents() {
 
     container.addEventListener('click', (event) => {
         if (event.target.classList.contains('display-form-btn')) {
-            toggleFormModal(event);
+            dialogManager.showModal();
         }
 
         else if (event.target.classList.contains('delete-all')) {
