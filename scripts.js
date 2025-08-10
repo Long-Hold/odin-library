@@ -19,8 +19,6 @@ class Book {
         this.#author = author;
         this.#numOfPages = numOfPages;
         this.#readStatus = readStatus;
-
-        Book.#bookArray.push(this);
     }
 
     get bookID() { return this.#bookID; }
@@ -47,9 +45,9 @@ class Book {
 const library = (function() {
     const booksArray = [];
 
-    const addBook = (book) => booksArray.append(book);
+    const addBook = (book) => booksArray.push(book);
 
-    const deleteAllBooks = () => bookArray.length = 0;
+    const deleteAllBooks = () => booksArray.length = 0;
 
     const deleteBook = (datasetID) => booksArray.splice(getBookObj(datasetID), 1); 
 
@@ -115,6 +113,8 @@ function createNewBook() {
             parseInt(formData.get('page-num')),
             formData.get('status') === 'read-true' ? true : false,
         )
+
+        library.addBook(book);
 
         updateCardDisplay(book);
 
@@ -210,7 +210,7 @@ function displayAllBooks() {
      * in array
      */
     bookCardsContainer.textContent = '';
-    Book.bookArray.forEach(book => updateCardDisplay(book));
+    library.getBookArray().forEach(book => updateCardDisplay(book));
 }
 
 // Dialog toggle or delete all delegator
@@ -224,28 +224,22 @@ captureBookCardEvents();
 
 // Create 12 distinct book objects and add them to the array
 
-const book1 = new Book('The Alchemist', 'Paulo Coelho', 205, true);
+const initializeSampleBooks = (function() {
+    const sampleBooks = [
+        new Book('The Alchemist', 'Paulo Coelho', 205, true),
+        new Book('To Kill a Mockingbird', 'Harper Lee', 376, true),
+        new Book('1984', 'George Orwell', 328, false),
+        new Book('The Great Gatsby', 'F. Scott Fitzgerald', 180, true),
+        new Book('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', 309, true),
+        new Book('The Catcher in the Rye', 'J.D. Salinger', 277, false),
+        new Book('Pride and Prejudice', 'Jane Austen', 432, true),
+        new Book('The Lord of the Rings', 'J.R.R. Tolkien', 1216, false),
+        new Book('The Hitchhiker\'s Guide to the Galaxy', 'Douglas Adams', 224, true),
+        new Book('Brave New World', 'Aldous Huxley', 268, false),
+        new Book('The Hobbit', 'J.R.R. Tolkien', 310, true),
+        new Book('Fahrenheit 451', 'Ray Bradbury', 194, false)
+    ];
 
-const book2 = new Book('To Kill a Mockingbird', 'Harper Lee', 376, true);
-
-const book3 = new Book('1984', 'George Orwell', 328, false);
-
-const book4 = new Book('The Great Gatsby', 'F. Scott Fitzgerald', 180, true);
-
-const book5 = new Book('Harry Potter and the Sorcerer\'s Stone', 'J.K. Rowling', 309, true);
-
-const book6 = new Book('The Catcher in the Rye', 'J.D. Salinger', 277, false);
-
-const book7 = new Book('Pride and Prejudice', 'Jane Austen', 432, true);
-
-const book8 = new Book('The Lord of the Rings', 'J.R.R. Tolkien', 1216, false);
-
-const book9 = new Book('The Hitchhiker\'s Guide to the Galaxy', 'Douglas Adams', 224, true);
-
-const book10 = new Book('Brave New World', 'Aldous Huxley', 268, false);
-
-const book11 = new Book('The Hobbit', 'J.R.R. Tolkien', 310, true);
-
-const book12 = new Book('Fahrenheit 451', 'Ray Bradbury', 194, false);
-
-displayAllBooks();
+    sampleBooks.forEach(book => library.addBook(book));
+    displayAllBooks();
+})();
