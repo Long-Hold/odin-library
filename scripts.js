@@ -222,8 +222,6 @@ createNewBook();
 // Book card event delegation
 captureBookCardEvents();
 
-// Create 12 distinct book objects and add them to the array
-
 const initializeSampleBooks = (function() {
     const sampleBooks = [
         new Book('The Alchemist', 'Paulo Coelho', 205, true),
