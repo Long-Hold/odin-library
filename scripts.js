@@ -76,22 +76,6 @@ function delegateAddBookEvents() {
     })
 }
 
-function toggleFormModal(event) {
-    // Listens for events related to the dialog open and close functionality
-
-    const dialog = document.querySelector('dialog');
-
-    if (event.target.classList.contains('display-form-btn')) {
-        dialog.showModal();
-    }
-
-    dialog.addEventListener('click', (event) => {
-            if (event.target.classList.contains('close-dialog')) {
-        dialog.close();
-    }
-    })
-}
-
 function createNewBook() {
     /** Catches the form locally
      * Creates a new book object, adds to global book array
