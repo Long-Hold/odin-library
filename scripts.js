@@ -119,11 +119,6 @@ function createNewBook() {
     })
 }
 
-function addBookToLibrary(bookObject) {
-    bookArray.push(bookObject);
-    console.log(`Book Object: ${bookObject.bookID} added to bookArray Library`);
-}
-
 function updateCardDisplay(bookObject) {
     /**Uses a bookObject to create a new DOM element
      * Dom element template is a global variable, the data is modified
