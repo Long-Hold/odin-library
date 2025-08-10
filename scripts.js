@@ -57,6 +57,8 @@ const library = (function() {
          * Book ID
          */   
     }
+
+    const getBookObj = (datasetID) => booksArray.find(book => book.bookID === datasetID);
 })();
 
 function delegateAddBookEvents() {
@@ -196,15 +198,6 @@ function updateStatusColor(bookCard, bookObject) {
 
     statusContainer.style.backgroundColor = bookObject.readStatus ? 'green' : 'var(--warning-red)';
     console.log(`Book Card: ${bookCard.dataset.datasetID} status container set to ${statusContainer.style.backgroundColor}`);
-}
-
-function getBookObjectIndex(datasetID) {
-    /**Parses the global object array matching object ID with node dataset.bookID
-     * 
-     * Returns: Int: Index of the book object
-     */
-
-    return Book.bookArray.findIndex(book => book.bookID === datasetID);
 }
 
 function getBookObject(datasetID) {
