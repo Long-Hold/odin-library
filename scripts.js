@@ -160,7 +160,7 @@ function captureBookCardEvents() {
             // Then delete the node that represents this object
 
             // Record the unique ID of the selected book card
-            deleteBookFromLibrary(bookCard.dataset.bookid);
+            library.deleteBook(bookCard.dataset.bookid);
             deleteBookCardNode(bookCard);
         }
 
@@ -172,13 +172,6 @@ function captureBookCardEvents() {
             updateStatusColor(bookCard, bookObject);
         }
     })
-}
-
-function deleteBookFromLibrary(bookID) {
-    /**Deletes a selected book from the array based on dataset.bookID.
-     */
-    Book.deleteBook(bookID);
-    console.log(`Book ID: ${bookID} deleted from bookArray`);
 }
 
 function deleteBookCardNode(bookCard) {
