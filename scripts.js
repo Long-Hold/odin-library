@@ -82,6 +82,12 @@ const newBookForm = (function() {
 const bookCardManager = (function() {
     const cardContainer = document.querySelector('.cards-container');
     const bookCardTemp = document.querySelector('.book-card-template');
+    const deleteAllBtn = document.querySelector('.delete-all');
+
+    deleteAllBtn.addEventListener('click', () => {
+        library.deleteAllBooks();
+        cardContainer.innerHTML = '';
+    })
 
     cardContainer.addEventListener('click', (event) => {
         const bookCard = event.target.closest('.book-card');
@@ -130,17 +136,6 @@ const bookCardManager = (function() {
     return {createNewCard};
 })();
 
-function delegateAddBookEvents() {
-    const container = document.querySelector('.add-book-container');
-
-    container.addEventListener('click', (event) => {
-        if (event.target.classList.contains('delete-all')) {
-            library.deleteAllBooks();
-            bookCardsContainer.innerHTML = '';
-        }
-    })
-}
-
 function changeCardNodeStatus(bookCard, bookObject) {
     bookCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
     console.log(`Book Node: ${bookCard.dataset.bookid} status changed to ${bookCard.querySelector('.status').textContent}`)
@@ -161,9 +156,6 @@ function displayAllBooks() {
     bookCardsContainer.textContent = '';
     library.getBookArray().forEach(book => bookCardManager.createNewCard(book));
 }
-
-// Dialog toggle or delete all delegator
-delegateAddBookEvents();
 
 const initializeSampleBooks = (function() {
     const sampleBooks = [
