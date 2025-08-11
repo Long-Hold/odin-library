@@ -57,7 +57,9 @@ const newBookForm = (function() {
         const book = createNewBook(event);
         library.addBook(book);
         updateCardDisplay(book);
+        
         form.reset();
+        dialogManager.closeDialog();
     })
 
     const createNewBook = (event) => {
@@ -77,12 +79,14 @@ const dialogManager = (function() {
 
     const showModal = () => dialog.showModal();
 
+    const closeDialog = () => dialog.close();
+
     // Closes the dialog if the close button is selected
     dialog.addEventListener('click', (event) => {
         if (event.target.classList.contains('close-dialog')) { dialog.close(); }
     });
 
-    return {showModal};
+    return {showModal, closeDialog};
 })();
 
 function delegateAddBookEvents() {
