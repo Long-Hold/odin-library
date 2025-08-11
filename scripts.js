@@ -136,18 +136,6 @@ const bookCardManager = (function() {
     return {createNewCard};
 })();
 
-function changeCardNodeStatus(bookCard, bookObject) {
-    bookCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
-    console.log(`Book Node: ${bookCard.dataset.bookid} status changed to ${bookCard.querySelector('.status').textContent}`)
-}
-
-function updateStatusColor(bookCard, bookObject) {
-    const statusContainer = bookCard.querySelector('.status');
-
-    statusContainer.style.backgroundColor = bookObject.readStatus ? 'green' : 'var(--warning-red)';
-    console.log(`Book Card: ${bookCard.dataset.datasetID} status container set to ${statusContainer.style.backgroundColor}`);
-}
-
 function displayAllBooks() {
     /**
      * Clears the UI and then calls the UI update function for each element
