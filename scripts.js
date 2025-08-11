@@ -51,7 +51,7 @@ const library = (function() {
 const newBookForm = (function() {
     const form = document.getElementById('new-book-form');
     
-    form.addEventListener('click', (event) => {
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const book = createNewBook(event);
@@ -101,36 +101,6 @@ function delegateAddBookEvents() {
             library.deleteAllBooks();
             bookCardsContainer.innerHTML = '';
         }
-    })
-}
-
-function createNewBook() {
-    /** Catches the form locally
-     * Creates a new book object, adds to global book array
-     * Resets form, closes dialog
-     */
-    const newBookForm = document.getElementById('new-book-form');
-    const dialog = document.querySelector('dialog');
-
-    newBookForm.addEventListener('submit', (event) => {
-        // Stop default form submission to allow local handling
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        
-        const book = new Book(
-            formData.get('title'),
-            formData.get('author'),
-            parseInt(formData.get('page-num')),
-            formData.get('status') === 'read-true' ? true : false,
-        )
-
-        library.addBook(book);
-
-        updateCardDisplay(book);
-
-        newBookForm.reset();
-        dialog.close();
     })
 }
 
@@ -209,9 +179,6 @@ function displayAllBooks() {
 
 // Dialog toggle or delete all delegator
 delegateAddBookEvents();
-
-// Form submission events
-createNewBook();
 
 // Book card event delegation
 captureBookCardEvents();
