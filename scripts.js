@@ -118,27 +118,6 @@ function delegateAddBookEvents() {
     })
 }
 
-function updateCardDisplay(bookObject) {
-    /**Uses a bookObject to create a new DOM element
-     * Dom element template is a global variable, the data is modified
-     * based on object attrributes
-     */
-
-    // Perform deep copy of card (carries over children-structure)
-    const newCard = bookCardNode.content.cloneNode(true).querySelector('.book-card');
-
-    newCard.dataset.bookid = bookObject.bookID;
-    newCard.querySelector('.title').textContent = bookObject.title;
-    newCard.querySelector('.author em').textContent = bookObject.author;
-    newCard.querySelector('.page-num').textContent = `${bookObject.numOfPages} pages`;
-    newCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
-    updateStatusColor(newCard, bookObject);
-
-    bookCardsContainer.appendChild(newCard);
-
-    console.log(`Book Object: ${bookObject.bookID} succesfully added to Card`)
-}
-
 function captureBookCardEvents() {
     const cardsContainer = document.querySelector('.cards-container');
 
@@ -188,7 +167,7 @@ function displayAllBooks() {
      * in array
      */
     bookCardsContainer.textContent = '';
-    library.getBookArray().forEach(book => updateCardDisplay(book));
+    library.getBookArray().forEach(book => bookCardManager.createNewCard(book));
 }
 
 // Dialog toggle or delete all delegator
