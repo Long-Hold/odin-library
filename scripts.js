@@ -64,7 +64,7 @@ const newBookForm = (function() {
 
         const book = createNewBook(event);
         library.addBook(book);
-        updateCardDisplay(book);
+        bookCardManager.createNewCard(book);
         
         form.reset();
         dialog.close();
@@ -80,6 +80,31 @@ const newBookForm = (function() {
             formData.get('status') === 'read-true' ? true : false,
         )
     }
+})();
+
+const bookCardManager = (function() {
+    const cardContainer = document.querySelector('.cards-container');
+    const bookCard = document.querySelector('.book-card-template');
+
+    const createNewCard = (bookObj) => {
+        const newCard = bookCard.content.cloneNode(true).querySelector('.book-card');
+
+        newCard.dataset.bookid = bookObj.bookID;
+        newCard.querySelector('.title').textContent = bookObj.title;
+        newCard.querySelector('.author em').textContent = bookObj.author;
+        newCard.querySelector('.page-num').textContent = `${bookObj.numOfPages} pages`;
+        newCard.querySelector('.status').textContent = bookObj.readStatus ? 'Read' : 'Not Read';
+
+        changeStatusColor(newCard, bookObj);
+        cardContainer.appendChild(newCard);
+    }
+
+    const changeStatusColor = (cardNode, bookObj) => {
+        const statusContainer = cardNode.querySelector('.status');
+        statusContainer.style.backgroundColor = bookObj.readStatus ? 'green' : 'var(--warning-red)';
+    }
+
+    return {createNewCard};
 })();
 
 function delegateAddBookEvents() {
