@@ -133,17 +133,13 @@ const bookCardManager = (function() {
         cardNode.querySelector('.status').textContent = bookObj.readStatus ? 'Read' : 'Not Read';
     }
 
-    return {createNewCard};
-})();
+    const displayAll = () => {
+        cardContainer.textContent = '';
+        library.getBookArray().forEach(book => createNewCard(book));
+    }
 
-function displayAllBooks() {
-    /**
-     * Clears the UI and then calls the UI update function for each element
-     * in array
-     */
-    bookCardsContainer.textContent = '';
-    library.getBookArray().forEach(book => bookCardManager.createNewCard(book));
-}
+    return {createNewCard, displayAll};
+})();
 
 const initializeSampleBooks = (function() {
     const sampleBooks = [
@@ -162,5 +158,5 @@ const initializeSampleBooks = (function() {
     ];
 
     sampleBooks.forEach(book => library.addBook(book));
-    displayAllBooks();
+    bookCardManager.displayAll();
 })();
