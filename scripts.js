@@ -84,10 +84,10 @@ const newBookForm = (function() {
 
 const bookCardManager = (function() {
     const cardContainer = document.querySelector('.cards-container');
-    const bookCard = document.querySelector('.book-card-template');
+    const bookCardTemp = document.querySelector('.book-card-template');
 
     const createNewCard = (bookObj) => {
-        const newCard = bookCard.content.cloneNode(true).querySelector('.book-card');
+        const newCard = bookCardTemp.content.cloneNode(true).querySelector('.book-card');
 
         newCard.dataset.bookid = bookObj.bookID;
         newCard.querySelector('.title').textContent = bookObj.title;
