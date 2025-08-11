@@ -1,6 +1,3 @@
-// Node for book cards
-const bookCardsContainer = document.querySelector('.cards-container');
-
 class Book {
     #bookID;
     #title;
@@ -134,7 +131,7 @@ const bookCardManager = (function() {
     }
 
     const displayAll = () => {
-        cardContainer.textContent = '';
+        cardContainer.innerHTML = '';
         library.getBookArray().forEach(book => createNewCard(book));
     }
 
