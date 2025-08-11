@@ -1,6 +1,3 @@
-// The Node card template to create new books with
-const bookCardNode = document.querySelector('.book-card-template');
-
 // Node for book cards
 const bookCardsContainer = document.querySelector('.cards-container');
 
@@ -86,6 +83,28 @@ const bookCardManager = (function() {
     const cardContainer = document.querySelector('.cards-container');
     const bookCardTemp = document.querySelector('.book-card-template');
 
+    cardContainer.addEventListener('click', (event) => {
+        const bookCard = event.target.closest('.book-card');
+
+        switch (event.target.textContent) {
+            case 'Delete Book':
+                library.deleteBook();
+                bookCard.remove();
+                break;
+            
+            case 'Change Status':
+                const bookObj = library.getBookObj(bookCard.dataset.bookid);
+                
+                bookObj.changeReadStatus();
+                changeStatusColor(bookCard, bookObj);
+                changeStatusText(bookCard, bookObj);
+                break;
+            
+            default:
+                break;
+        }
+    })
+
     const createNewCard = (bookObj) => {
         const newCard = bookCardTemp.content.cloneNode(true).querySelector('.book-card');
 
@@ -104,6 +123,10 @@ const bookCardManager = (function() {
         statusContainer.style.backgroundColor = bookObj.readStatus ? 'green' : 'var(--warning-red)';
     }
 
+    const changeStatusText = (cardNode, bookObj) => {
+        cardNode.querySelector('.status').textContent = bookObj.readStatus ? 'Read' : 'Not Read';
+    }
+
     return {createNewCard};
 })();
 
@@ -116,37 +139,6 @@ function delegateAddBookEvents() {
             bookCardsContainer.innerHTML = '';
         }
     })
-}
-
-function captureBookCardEvents() {
-    const cardsContainer = document.querySelector('.cards-container');
-
-    cardsContainer.addEventListener('click', (event) => {
-        const bookCard = event.target.closest('.book-card');
-
-        if (event.target.textContent === 'Delete Book') {
-            // Remove the object from the global array
-            // Then delete the node that represents this object
-
-            // Record the unique ID of the selected book card
-            library.deleteBook(bookCard.dataset.bookid);
-            deleteBookCardNode(bookCard);
-        }
-
-        if (event.target.textContent === 'Change Status') {
-            const bookObject = library.getBookObj(bookCard.dataset.bookid);
-
-            bookObject.changeReadStatus();
-            changeCardNodeStatus(bookCard, bookObject);
-            updateStatusColor(bookCard, bookObject);
-        }
-    })
-}
-
-function deleteBookCardNode(bookCard) {
-    /**Removes the node from the UI */
-    bookCard.remove();
-    console.log(`Book Node: ${bookCard.dataset.bookid} Removed`);
 }
 
 function changeCardNodeStatus(bookCard, bookObject) {
@@ -172,9 +164,6 @@ function displayAllBooks() {
 
 // Dialog toggle or delete all delegator
 delegateAddBookEvents();
-
-// Book card event delegation
-captureBookCardEvents();
 
 const initializeSampleBooks = (function() {
     const sampleBooks = [
