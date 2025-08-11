@@ -1,9 +1,3 @@
-// The Node card template to create new books with
-const bookCardNode = document.querySelector('.book-card-template');
-
-// Node for book cards
-const bookCardsContainer = document.querySelector('.cards-container');
-
 class Book {
     #bookID;
     #title;
@@ -48,148 +42,101 @@ const library = (function() {
     return {addBook, deleteAllBooks, deleteBook, getBookObj, getBookArray};
 })();
 
-function delegateAddBookEvents() {
-    const container = document.querySelector('.add-book-container');
-
-    container.addEventListener('click', (event) => {
-        if (event.target.classList.contains('display-form-btn')) {
-            toggleFormModal(event);
-        }
-
-        else if (event.target.classList.contains('delete-all')) {
-            library.deleteAllBooks();
-            bookCardsContainer.innerHTML = '';
-        }
-    })
-}
-
-function toggleFormModal(event) {
-    // Listens for events related to the dialog open and close functionality
-
+const newBookForm = (function() {
+    const addBookBtn = document.querySelector('.display-form-btn');
     const dialog = document.querySelector('dialog');
+    const form = document.getElementById('new-book-form');
 
-    if (event.target.classList.contains('display-form-btn')) {
-        dialog.showModal();
-    }
+    addBookBtn.addEventListener('click', () => dialog.showModal());
 
     dialog.addEventListener('click', (event) => {
-            if (event.target.classList.contains('close-dialog')) {
-        dialog.close();
-    }
+        if (event.target.classList.contains('close-dialog')) { dialog.close(); }
     })
-}
-
-function createNewBook() {
-    /** Catches the form locally
-     * Creates a new book object, adds to global book array
-     * Resets form, closes dialog
-     */
-    const newBookForm = document.getElementById('new-book-form');
-    const dialog = document.querySelector('dialog');
-
-    newBookForm.addEventListener('submit', (event) => {
-        // Stop default form submission to allow local handling
+    
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const formData = new FormData(event.target);
+        const book = createNewBook(event);
+        library.addBook(book);
+        bookCardManager.createNewCard(book);
         
-        const book = new Book(
+        form.reset();
+        dialog.close();
+    })
+
+    const createNewBook = (event) => {
+        const formData = new FormData(event.target);
+
+        return new Book(
             formData.get('title'),
             formData.get('author'),
             parseInt(formData.get('page-num')),
             formData.get('status') === 'read-true' ? true : false,
         )
+    }
+})();
 
-        library.addBook(book);
+const bookCardManager = (function() {
+    const cardContainer = document.querySelector('.cards-container');
+    const bookCardTemp = document.querySelector('.book-card-template');
+    const deleteAllBtn = document.querySelector('.delete-all');
 
-        updateCardDisplay(book);
-
-        newBookForm.reset();
-        dialog.close();
+    deleteAllBtn.addEventListener('click', () => {
+        library.deleteAllBooks();
+        cardContainer.innerHTML = '';
     })
-}
 
-function updateCardDisplay(bookObject) {
-    /**Uses a bookObject to create a new DOM element
-     * Dom element template is a global variable, the data is modified
-     * based on object attrributes
-     */
-
-    // Perform deep copy of card (carries over children-structure)
-    const newCard = bookCardNode.content.cloneNode(true).querySelector('.book-card');
-
-    newCard.dataset.bookid = bookObject.bookID;
-    newCard.querySelector('.title').textContent = bookObject.title;
-    newCard.querySelector('.author em').textContent = bookObject.author;
-    newCard.querySelector('.page-num').textContent = `${bookObject.numOfPages} pages`;
-    newCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
-    updateStatusColor(newCard, bookObject);
-
-    bookCardsContainer.appendChild(newCard);
-
-    console.log(`Book Object: ${bookObject.bookID} succesfully added to Card`)
-}
-
-function captureBookCardEvents() {
-    const cardsContainer = document.querySelector('.cards-container');
-
-    cardsContainer.addEventListener('click', (event) => {
+    cardContainer.addEventListener('click', (event) => {
         const bookCard = event.target.closest('.book-card');
 
-        if (event.target.textContent === 'Delete Book') {
-            // Remove the object from the global array
-            // Then delete the node that represents this object
-
-            // Record the unique ID of the selected book card
-            library.deleteBook(bookCard.dataset.bookid);
-            deleteBookCardNode(bookCard);
-        }
-
-        if (event.target.textContent === 'Change Status') {
-            const bookObject = library.getBookObj(bookCard.dataset.bookid);
-
-            bookObject.changeReadStatus();
-            changeCardNodeStatus(bookCard, bookObject);
-            updateStatusColor(bookCard, bookObject);
+        switch (event.target.textContent) {
+            case 'Delete Book':
+                library.deleteBook();
+                bookCard.remove();
+                break;
+            
+            case 'Change Status':
+                const bookObj = library.getBookObj(bookCard.dataset.bookid);
+                
+                bookObj.changeReadStatus();
+                changeStatusColor(bookCard, bookObj);
+                changeStatusText(bookCard, bookObj);
+                break;
+            
+            default:
+                break;
         }
     })
-}
 
-function deleteBookCardNode(bookCard) {
-    /**Removes the node from the UI */
-    bookCard.remove();
-    console.log(`Book Node: ${bookCard.dataset.bookid} Removed`);
-}
+    const createNewCard = (bookObj) => {
+        const newCard = bookCardTemp.content.cloneNode(true).querySelector('.book-card');
 
-function changeCardNodeStatus(bookCard, bookObject) {
-    bookCard.querySelector('.status').textContent = bookObject.readStatus ? 'Read' : 'Not Read';
-    console.log(`Book Node: ${bookCard.dataset.bookid} status changed to ${bookCard.querySelector('.status').textContent}`)
-}
+        newCard.dataset.bookid = bookObj.bookID;
+        newCard.querySelector('.title').textContent = bookObj.title;
+        newCard.querySelector('.author em').textContent = bookObj.author;
+        newCard.querySelector('.page-num').textContent = `${bookObj.numOfPages} pages`;
+        newCard.querySelector('.status').textContent = bookObj.readStatus ? 'Read' : 'Not Read';
 
-function updateStatusColor(bookCard, bookObject) {
-    const statusContainer = bookCard.querySelector('.status');
+        changeStatusColor(newCard, bookObj);
+        cardContainer.appendChild(newCard);
+    }
 
-    statusContainer.style.backgroundColor = bookObject.readStatus ? 'green' : 'var(--warning-red)';
-    console.log(`Book Card: ${bookCard.dataset.datasetID} status container set to ${statusContainer.style.backgroundColor}`);
-}
+    const changeStatusColor = (cardNode, bookObj) => {
+        const statusContainer = cardNode.querySelector('.status');
+        statusContainer.style.backgroundColor = bookObj.readStatus ? 'green' : 'var(--warning-red)';
+    }
 
-function displayAllBooks() {
-    /**
-     * Clears the UI and then calls the UI update function for each element
-     * in array
-     */
-    bookCardsContainer.textContent = '';
-    library.getBookArray().forEach(book => updateCardDisplay(book));
-}
+    const changeStatusText = (cardNode, bookObj) => {
+        cardNode.querySelector('.status').textContent = bookObj.readStatus ? 'Read' : 'Not Read';
+    }
 
-// Dialog toggle or delete all delegator
-delegateAddBookEvents();
+    const displayAll = () => {
+        cardContainer.innerHTML = '';
+        library.getBookArray().forEach(book => createNewCard(book));
+    }
 
-// Form submission events
-createNewBook();
-
-// Book card event delegation
-captureBookCardEvents();
+    return {createNewCard, displayAll};
+})();
 
 const initializeSampleBooks = (function() {
     const sampleBooks = [
@@ -208,5 +155,5 @@ const initializeSampleBooks = (function() {
     ];
 
     sampleBooks.forEach(book => library.addBook(book));
-    displayAllBooks();
+    bookCardManager.displayAll();
 })();
