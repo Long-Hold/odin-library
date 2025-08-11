@@ -49,7 +49,15 @@ const library = (function() {
 })();
 
 const newBookForm = (function() {
+    const addBookBtn = document.querySelector('.display-form-btn');
+    const dialog = document.querySelector('dialog');
     const form = document.getElementById('new-book-form');
+
+    addBookBtn.addEventListener('click', () => dialog.showModal());
+
+    dialog.addEventListener('click', (event) => {
+        if (event.target.classList.contains('close-dialog')) { dialog.close(); }
+    })
     
     form.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -59,7 +67,7 @@ const newBookForm = (function() {
         updateCardDisplay(book);
         
         form.reset();
-        dialogManager.closeDialog();
+        dialog.close();
     })
 
     const createNewBook = (event) => {
@@ -74,30 +82,11 @@ const newBookForm = (function() {
     }
 })();
 
-const dialogManager = (function() {
-    const dialog = document.querySelector('dialog');
-
-    const showModal = () => dialog.showModal();
-
-    const closeDialog = () => dialog.close();
-
-    // Closes the dialog if the close button is selected
-    dialog.addEventListener('click', (event) => {
-        if (event.target.classList.contains('close-dialog')) { dialog.close(); }
-    });
-
-    return {showModal, closeDialog};
-})();
-
 function delegateAddBookEvents() {
     const container = document.querySelector('.add-book-container');
 
     container.addEventListener('click', (event) => {
-        if (event.target.classList.contains('display-form-btn')) {
-            dialogManager.showModal();
-        }
-
-        else if (event.target.classList.contains('delete-all')) {
+        if (event.target.classList.contains('delete-all')) {
             library.deleteAllBooks();
             bookCardsContainer.innerHTML = '';
         }
