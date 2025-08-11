@@ -48,6 +48,30 @@ const library = (function() {
     return {addBook, deleteAllBooks, deleteBook, getBookObj, getBookArray};
 })();
 
+const newBookForm = (function() {
+    const form = document.getElementById('new-book-form');
+    
+    form.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const book = createNewBook(event);
+        library.addBook(book);
+        updateCardDisplay(book);
+        form.reset();
+    })
+
+    const createNewBook = (event) => {
+        const formData = new FormData(event.target);
+
+        return new Book(
+            formData.get('title'),
+            formData.get('author'),
+            parseInt(formData.get('page-num')),
+            formData.get('status') === 'read-true' ? true : false,
+        )
+    }
+})();
+
 const dialogManager = (function() {
     const dialog = document.querySelector('dialog');
 
